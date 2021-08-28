@@ -5,10 +5,18 @@ import { Card, CardImg, CardBody, CardText, CardTitle } from 'reactstrap';
 class DishDetail extends Component {
 
   convertDateToCommentDateFormat(timestamp) {
-    const date = new Date(timestamp);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    // const date = new Date(timestamp);
+    // return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    // this.componentDidMount()
+    {
+      console.log(' DishDetail Component ComponentDid Mountain Invoked');
+    }
+    this.componentDidUpdate()
+    {
+      console.log(' DishDetail Component ComponentDid Update Invoked');
+    }
+  
   }
-
   renderDish(dish) {
     return (
       <Card>
@@ -48,6 +56,7 @@ class DishDetail extends Component {
   }
 
   render() {
+    console.log(' DishDetail Component ComponentDid render Invoked');
     if (this.props.dish != null) {
       return (
         <div class="container">
