@@ -154,7 +154,7 @@ validate(firstname,lastname,telnum,email)
                   First Names
                 </label>
                 <col md={10}>
-                  <input
+                  <Input
                     type="text"
                     id="firstname"
                     name="firstname"
@@ -175,7 +175,7 @@ validate(firstname,lastname,telnum,email)
                   Last Names
                 </label>
                 <col md={10}>
-                  <input
+                  <Input
                     type="text"
                     id="lastname"
                     name="lastname"
@@ -195,7 +195,7 @@ validate(firstname,lastname,telnum,email)
                   Contact Tel.
                 </label>
                 <col md={10}>
-                  <input
+                  <Input
                     type="tel"
                     id="telnum"
                     name="telnum"
@@ -215,7 +215,7 @@ validate(firstname,lastname,telnum,email)
                   Email
                 </label>
                 <col md={10}>
-                  <input
+                  <Input
                     type="email"
                     id="email"
                     name="email"
