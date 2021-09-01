@@ -8,6 +8,11 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import{Control,LocalForm,Errors} from "react-redux-form";
+const required=(val)=>val&&val.length;
+const maxlength=(len)=>!(val)||(val.length<=len);
+const minlength=(len)=>(val)&&(val.length>=len);
+const isNumber=(val)=>!NaN(Number(val));
+const validEmail=(val)=>/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/.test(val);
 class Contact extends Component {
   constructor(props) {
     super(props);
@@ -101,6 +106,19 @@ alert("Current State is:"+JSON.stringify(values));
                     name="firstname"
                     placeholder="First Name"
                     className="form-control"
+                    validators={{
+                      required,minLength:minLength(3),maxLength:maxLength(15)
+                    }}
+                  />
+                  <Errors
+                  className="text-danger"
+                  model=".firstname"
+                  show="touched"
+                  messages={{
+                    required:'Required',
+                    minLength:'Must be greater than 2 characters',
+                    maxLength:'Must be 15 characters or less'
+                  }}
                   />
                 </col>
               </Row>
@@ -116,6 +134,19 @@ alert("Current State is:"+JSON.stringify(values));
                     name="lastname"
                     placeholder="Last Name"
                     className="form-control"
+                    validators={{
+                      required,minLength:minLength(3),maxLength:maxLength(15)
+                    }}
+                  />
+                  <Errors
+                  className="text-danger"
+                  model=".lastname"
+                  show="touched"
+                  messages={{
+                    required:'Required',
+                    minLength:'Must be greater than 2 characters',
+                    maxLength:'Must be 15 characters or less'
+                  }}
                   />
                 </col>
               </Row>
@@ -131,6 +162,20 @@ alert("Current State is:"+JSON.stringify(values));
                     name="telnum"
                     placeholder="Tel. Number"
                     className="form-control"
+                    validators={{
+                      required,minLength:minLength(3),maxLength:maxLength(15),isNumber
+                    }}
+                  />
+                  <Errors
+                  className="text-danger"
+                  model=".telnum"
+                  show="touched"
+                  messages={{
+                    required:'Required',
+                    minLength:'Must be greater than 2 numbers',
+                    maxLength:'Must be 15 numbers or less',
+                    isNumber:'Must be a number'
+                  }}
                   />
                 </col>
               </Row>
@@ -146,6 +191,18 @@ alert("Current State is:"+JSON.stringify(values));
                     name="email"
                     placeholder="Email"
                     className="form-control"
+                    validators={{
+                      required,validEmail
+                    }}
+                  />
+                   <Errors
+                  className="text-danger"
+                  model=".telnum"
+                  show="touched"
+                  messages={{
+                    required:'Required',
+                    validEmail:'invalid email address',
+                  }}
                   />
                 </col>
               </Row>
