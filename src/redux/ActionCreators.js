@@ -14,8 +14,22 @@ payload:{
 export const fetchDishes=()=>(dispatch)=>{
     dispatch(dishesLoading(true));
     return fetch(baseUrl+'dishes')
+    .then(response=>{
+        if(response.ok)
+        return response;
+        else {
+            var error=new Error('Error'+response.status+': '+response.statusText);
+            error.response=response;
+            throw error;
+        }
+    },
+    error=>{
+        var errmess =new Error(error.message);
+        throw errmess;
+    })
     .then(response=>response.json())
-    .then(dishes=>dispatch(addDishes(dishes)));
+    .then(dishes=>dispatch(addDishes(dishes)))
+    .catch(error=>dispatch(dishesFailed(error.message)));
 
 
 }
@@ -35,8 +49,23 @@ export const addDishes=(dishes)=>({
 export const fetchComments=()=>(dispatch)=>{
     dispatch(dishesLoading(true));
     return fetch(baseUrl+'comments')
+   
+    .then(response=>{
+        if(response.ok)
+        return response;
+        else {
+            var error=new Error('Error'+response.status+': '+response.statusText);
+            error.response=response;
+            throw error;
+        }
+    },
+    error=>{
+        var errmess =new Error(error.message);
+        throw errmess;
+    })
     .then(response=>response.json())
-    .then(comments=>dispatch(addDishes(comments)));
+    .then(comments=>dispatch(addDishes(comments)))
+    .catch(error=>dispatch(commentsFailed(error.message)));;
     
 
 }
@@ -52,11 +81,26 @@ export const addComments=(comments)=>({
     payload:comments
 });
 
-xport const fetchPromos=()=>(dispatch)=>{
+export const fetchPromos=()=>(dispatch)=>{
     dispatch(promosLoading(true));
     return fetch(baseUrl+'promotions')
+   
+    .then(response=>{
+        if(response.ok)
+        return response;
+        else {
+            var error=new Error('Error'+response.status+': '+response.statusText);
+            error.response=response;
+            throw error;
+        }
+    },
+    error=>{
+        var errmess =new Error(error.message);
+        throw errmess;
+    })
     .then(response=>response.json())
-    .then(promoss=>dispatch(addPromos(promos)));
+    .then(promoss=>dispatch(addPromos(promos)))
+    .catch(error=>dispatch(promossFailed(error.message)));;
 
 
 }
